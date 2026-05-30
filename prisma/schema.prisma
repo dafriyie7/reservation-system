@@ -11,3 +11,43 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id String @id @default(cuid())
+  name String
+  email String
+}
+
+model Theatre {
+  id String @id @default(cuid())
+  name String
+  address String
+}
+
+model Seat {
+  id String @id @default(cuid())
+  seatNumber Int
+}
+
+model Movie {
+  id String @id @default(cuid())
+  name String
+  description String
+  duration Int
+}
+
+model MovieSchedule {
+  id String @id @default(cuid())
+  movie Movie @relation(fields: [movieId], references: [id])
+  movieId String
+  theatre Theatre @relation(fields: [theatreId], references: [id])
+  theatreId String
+}
+
+model Ticket {
+  id String @id @default(cuid())
+  seat Seat @relation(fields: [seatId], references: [id])
+  seatId String
+  movieSchedule MovieSchedule @relation(fields: [movieScheduleId], references: [id])
+  movieScheduleId String
+}
