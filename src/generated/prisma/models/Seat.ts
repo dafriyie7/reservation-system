@@ -36,17 +36,23 @@ export type SeatSumAggregateOutputType = {
 
 export type SeatMinAggregateOutputType = {
   id: string | null
+  rowLabel: string | null
   seatNumber: number | null
+  theatreId: string | null
 }
 
 export type SeatMaxAggregateOutputType = {
   id: string | null
+  rowLabel: string | null
   seatNumber: number | null
+  theatreId: string | null
 }
 
 export type SeatCountAggregateOutputType = {
   id: number
+  rowLabel: number
   seatNumber: number
+  theatreId: number
   _all: number
 }
 
@@ -61,17 +67,23 @@ export type SeatSumAggregateInputType = {
 
 export type SeatMinAggregateInputType = {
   id?: true
+  rowLabel?: true
   seatNumber?: true
+  theatreId?: true
 }
 
 export type SeatMaxAggregateInputType = {
   id?: true
+  rowLabel?: true
   seatNumber?: true
+  theatreId?: true
 }
 
 export type SeatCountAggregateInputType = {
   id?: true
+  rowLabel?: true
   seatNumber?: true
+  theatreId?: true
   _all?: true
 }
 
@@ -163,7 +175,9 @@ export type SeatGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type SeatGroupByOutputType = {
   id: string
+  rowLabel: string
   seatNumber: number
+  theatreId: string
   _count: SeatCountAggregateOutputType | null
   _avg: SeatAvgAggregateOutputType | null
   _sum: SeatSumAggregateOutputType | null
@@ -191,28 +205,40 @@ export type SeatWhereInput = {
   OR?: Prisma.SeatWhereInput[]
   NOT?: Prisma.SeatWhereInput | Prisma.SeatWhereInput[]
   id?: Prisma.StringFilter<"Seat"> | string
+  rowLabel?: Prisma.StringFilter<"Seat"> | string
   seatNumber?: Prisma.IntFilter<"Seat"> | number
+  theatreId?: Prisma.StringFilter<"Seat"> | string
+  theatre?: Prisma.XOR<Prisma.TheatreScalarRelationFilter, Prisma.TheatreWhereInput>
   tickets?: Prisma.TicketListRelationFilter
 }
 
 export type SeatOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  rowLabel?: Prisma.SortOrder
   seatNumber?: Prisma.SortOrder
+  theatreId?: Prisma.SortOrder
+  theatre?: Prisma.TheatreOrderByWithRelationInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
 }
 
 export type SeatWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  theatreId_rowLabel_seatNumber?: Prisma.SeatTheatreIdRowLabelSeatNumberCompoundUniqueInput
   AND?: Prisma.SeatWhereInput | Prisma.SeatWhereInput[]
   OR?: Prisma.SeatWhereInput[]
   NOT?: Prisma.SeatWhereInput | Prisma.SeatWhereInput[]
+  rowLabel?: Prisma.StringFilter<"Seat"> | string
   seatNumber?: Prisma.IntFilter<"Seat"> | number
+  theatreId?: Prisma.StringFilter<"Seat"> | string
+  theatre?: Prisma.XOR<Prisma.TheatreScalarRelationFilter, Prisma.TheatreWhereInput>
   tickets?: Prisma.TicketListRelationFilter
-}, "id">
+}, "id" | "theatreId_rowLabel_seatNumber">
 
 export type SeatOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  rowLabel?: Prisma.SortOrder
   seatNumber?: Prisma.SortOrder
+  theatreId?: Prisma.SortOrder
   _count?: Prisma.SeatCountOrderByAggregateInput
   _avg?: Prisma.SeatAvgOrderByAggregateInput
   _max?: Prisma.SeatMaxOrderByAggregateInput
@@ -225,51 +251,84 @@ export type SeatScalarWhereWithAggregatesInput = {
   OR?: Prisma.SeatScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SeatScalarWhereWithAggregatesInput | Prisma.SeatScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Seat"> | string
+  rowLabel?: Prisma.StringWithAggregatesFilter<"Seat"> | string
   seatNumber?: Prisma.IntWithAggregatesFilter<"Seat"> | number
+  theatreId?: Prisma.StringWithAggregatesFilter<"Seat"> | string
 }
 
 export type SeatCreateInput = {
   id?: string
+  rowLabel: string
   seatNumber: number
+  theatre: Prisma.TheatreCreateNestedOneWithoutSeatsInput
   tickets?: Prisma.TicketCreateNestedManyWithoutSeatInput
 }
 
 export type SeatUncheckedCreateInput = {
   id?: string
+  rowLabel: string
   seatNumber: number
+  theatreId: string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutSeatInput
 }
 
 export type SeatUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
   seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  theatre?: Prisma.TheatreUpdateOneRequiredWithoutSeatsNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
   seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  theatreId?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatCreateManyInput = {
   id?: string
+  rowLabel: string
   seatNumber: number
+  theatreId: string
 }
 
 export type SeatUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
   seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SeatUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
   seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  theatreId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type SeatListRelationFilter = {
+  every?: Prisma.SeatWhereInput
+  some?: Prisma.SeatWhereInput
+  none?: Prisma.SeatWhereInput
+}
+
+export type SeatOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type SeatTheatreIdRowLabelSeatNumberCompoundUniqueInput = {
+  theatreId: string
+  rowLabel: string
+  seatNumber: number
 }
 
 export type SeatCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  rowLabel?: Prisma.SortOrder
   seatNumber?: Prisma.SortOrder
+  theatreId?: Prisma.SortOrder
 }
 
 export type SeatAvgOrderByAggregateInput = {
@@ -278,12 +337,16 @@ export type SeatAvgOrderByAggregateInput = {
 
 export type SeatMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  rowLabel?: Prisma.SortOrder
   seatNumber?: Prisma.SortOrder
+  theatreId?: Prisma.SortOrder
 }
 
 export type SeatMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  rowLabel?: Prisma.SortOrder
   seatNumber?: Prisma.SortOrder
+  theatreId?: Prisma.SortOrder
 }
 
 export type SeatSumOrderByAggregateInput = {
@@ -293,6 +356,48 @@ export type SeatSumOrderByAggregateInput = {
 export type SeatScalarRelationFilter = {
   is?: Prisma.SeatWhereInput
   isNot?: Prisma.SeatWhereInput
+}
+
+export type SeatCreateNestedManyWithoutTheatreInput = {
+  create?: Prisma.XOR<Prisma.SeatCreateWithoutTheatreInput, Prisma.SeatUncheckedCreateWithoutTheatreInput> | Prisma.SeatCreateWithoutTheatreInput[] | Prisma.SeatUncheckedCreateWithoutTheatreInput[]
+  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutTheatreInput | Prisma.SeatCreateOrConnectWithoutTheatreInput[]
+  createMany?: Prisma.SeatCreateManyTheatreInputEnvelope
+  connect?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+}
+
+export type SeatUncheckedCreateNestedManyWithoutTheatreInput = {
+  create?: Prisma.XOR<Prisma.SeatCreateWithoutTheatreInput, Prisma.SeatUncheckedCreateWithoutTheatreInput> | Prisma.SeatCreateWithoutTheatreInput[] | Prisma.SeatUncheckedCreateWithoutTheatreInput[]
+  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutTheatreInput | Prisma.SeatCreateOrConnectWithoutTheatreInput[]
+  createMany?: Prisma.SeatCreateManyTheatreInputEnvelope
+  connect?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+}
+
+export type SeatUpdateManyWithoutTheatreNestedInput = {
+  create?: Prisma.XOR<Prisma.SeatCreateWithoutTheatreInput, Prisma.SeatUncheckedCreateWithoutTheatreInput> | Prisma.SeatCreateWithoutTheatreInput[] | Prisma.SeatUncheckedCreateWithoutTheatreInput[]
+  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutTheatreInput | Prisma.SeatCreateOrConnectWithoutTheatreInput[]
+  upsert?: Prisma.SeatUpsertWithWhereUniqueWithoutTheatreInput | Prisma.SeatUpsertWithWhereUniqueWithoutTheatreInput[]
+  createMany?: Prisma.SeatCreateManyTheatreInputEnvelope
+  set?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  disconnect?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  delete?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  connect?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  update?: Prisma.SeatUpdateWithWhereUniqueWithoutTheatreInput | Prisma.SeatUpdateWithWhereUniqueWithoutTheatreInput[]
+  updateMany?: Prisma.SeatUpdateManyWithWhereWithoutTheatreInput | Prisma.SeatUpdateManyWithWhereWithoutTheatreInput[]
+  deleteMany?: Prisma.SeatScalarWhereInput | Prisma.SeatScalarWhereInput[]
+}
+
+export type SeatUncheckedUpdateManyWithoutTheatreNestedInput = {
+  create?: Prisma.XOR<Prisma.SeatCreateWithoutTheatreInput, Prisma.SeatUncheckedCreateWithoutTheatreInput> | Prisma.SeatCreateWithoutTheatreInput[] | Prisma.SeatUncheckedCreateWithoutTheatreInput[]
+  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutTheatreInput | Prisma.SeatCreateOrConnectWithoutTheatreInput[]
+  upsert?: Prisma.SeatUpsertWithWhereUniqueWithoutTheatreInput | Prisma.SeatUpsertWithWhereUniqueWithoutTheatreInput[]
+  createMany?: Prisma.SeatCreateManyTheatreInputEnvelope
+  set?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  disconnect?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  delete?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  connect?: Prisma.SeatWhereUniqueInput | Prisma.SeatWhereUniqueInput[]
+  update?: Prisma.SeatUpdateWithWhereUniqueWithoutTheatreInput | Prisma.SeatUpdateWithWhereUniqueWithoutTheatreInput[]
+  updateMany?: Prisma.SeatUpdateManyWithWhereWithoutTheatreInput | Prisma.SeatUpdateManyWithWhereWithoutTheatreInput[]
+  deleteMany?: Prisma.SeatScalarWhereInput | Prisma.SeatScalarWhereInput[]
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -317,14 +422,68 @@ export type SeatUpdateOneRequiredWithoutTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SeatUpdateToOneWithWhereWithoutTicketsInput, Prisma.SeatUpdateWithoutTicketsInput>, Prisma.SeatUncheckedUpdateWithoutTicketsInput>
 }
 
+export type SeatCreateWithoutTheatreInput = {
+  id?: string
+  rowLabel: string
+  seatNumber: number
+  tickets?: Prisma.TicketCreateNestedManyWithoutSeatInput
+}
+
+export type SeatUncheckedCreateWithoutTheatreInput = {
+  id?: string
+  rowLabel: string
+  seatNumber: number
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutSeatInput
+}
+
+export type SeatCreateOrConnectWithoutTheatreInput = {
+  where: Prisma.SeatWhereUniqueInput
+  create: Prisma.XOR<Prisma.SeatCreateWithoutTheatreInput, Prisma.SeatUncheckedCreateWithoutTheatreInput>
+}
+
+export type SeatCreateManyTheatreInputEnvelope = {
+  data: Prisma.SeatCreateManyTheatreInput | Prisma.SeatCreateManyTheatreInput[]
+  skipDuplicates?: boolean
+}
+
+export type SeatUpsertWithWhereUniqueWithoutTheatreInput = {
+  where: Prisma.SeatWhereUniqueInput
+  update: Prisma.XOR<Prisma.SeatUpdateWithoutTheatreInput, Prisma.SeatUncheckedUpdateWithoutTheatreInput>
+  create: Prisma.XOR<Prisma.SeatCreateWithoutTheatreInput, Prisma.SeatUncheckedCreateWithoutTheatreInput>
+}
+
+export type SeatUpdateWithWhereUniqueWithoutTheatreInput = {
+  where: Prisma.SeatWhereUniqueInput
+  data: Prisma.XOR<Prisma.SeatUpdateWithoutTheatreInput, Prisma.SeatUncheckedUpdateWithoutTheatreInput>
+}
+
+export type SeatUpdateManyWithWhereWithoutTheatreInput = {
+  where: Prisma.SeatScalarWhereInput
+  data: Prisma.XOR<Prisma.SeatUpdateManyMutationInput, Prisma.SeatUncheckedUpdateManyWithoutTheatreInput>
+}
+
+export type SeatScalarWhereInput = {
+  AND?: Prisma.SeatScalarWhereInput | Prisma.SeatScalarWhereInput[]
+  OR?: Prisma.SeatScalarWhereInput[]
+  NOT?: Prisma.SeatScalarWhereInput | Prisma.SeatScalarWhereInput[]
+  id?: Prisma.StringFilter<"Seat"> | string
+  rowLabel?: Prisma.StringFilter<"Seat"> | string
+  seatNumber?: Prisma.IntFilter<"Seat"> | number
+  theatreId?: Prisma.StringFilter<"Seat"> | string
+}
+
 export type SeatCreateWithoutTicketsInput = {
   id?: string
+  rowLabel: string
   seatNumber: number
+  theatre: Prisma.TheatreCreateNestedOneWithoutSeatsInput
 }
 
 export type SeatUncheckedCreateWithoutTicketsInput = {
   id?: string
+  rowLabel: string
   seatNumber: number
+  theatreId: string
 }
 
 export type SeatCreateOrConnectWithoutTicketsInput = {
@@ -345,11 +504,41 @@ export type SeatUpdateToOneWithWhereWithoutTicketsInput = {
 
 export type SeatUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
   seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  theatre?: Prisma.TheatreUpdateOneRequiredWithoutSeatsNestedInput
 }
 
 export type SeatUncheckedUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  theatreId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type SeatCreateManyTheatreInput = {
+  id?: string
+  rowLabel: string
+  seatNumber: number
+}
+
+export type SeatUpdateWithoutTheatreInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  tickets?: Prisma.TicketUpdateManyWithoutSeatNestedInput
+}
+
+export type SeatUncheckedUpdateWithoutTheatreInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
+  seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutSeatNestedInput
+}
+
+export type SeatUncheckedUpdateManyWithoutTheatreInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rowLabel?: Prisma.StringFieldUpdateOperationsInput | string
   seatNumber?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -386,42 +575,61 @@ export type SeatCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.Ex
 
 export type SeatSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  rowLabel?: boolean
   seatNumber?: boolean
+  theatreId?: boolean
+  theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.Seat$ticketsArgs<ExtArgs>
   _count?: boolean | Prisma.SeatCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seat"]>
 
 export type SeatSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  rowLabel?: boolean
   seatNumber?: boolean
+  theatreId?: boolean
+  theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seat"]>
 
 export type SeatSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  rowLabel?: boolean
   seatNumber?: boolean
+  theatreId?: boolean
+  theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seat"]>
 
 export type SeatSelectScalar = {
   id?: boolean
+  rowLabel?: boolean
   seatNumber?: boolean
+  theatreId?: boolean
 }
 
-export type SeatOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seatNumber", ExtArgs["result"]["seat"]>
+export type SeatOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rowLabel" | "seatNumber" | "theatreId", ExtArgs["result"]["seat"]>
 export type SeatInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.Seat$ticketsArgs<ExtArgs>
   _count?: boolean | Prisma.SeatCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type SeatIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type SeatIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type SeatIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
+}
+export type SeatIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
+}
 
 export type $SeatPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Seat"
   objects: {
+    theatre: Prisma.$TheatrePayload<ExtArgs>
     tickets: Prisma.$TicketPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    rowLabel: string
     seatNumber: number
+    theatreId: string
   }, ExtArgs["result"]["seat"]>
   composites: {}
 }
@@ -816,6 +1024,7 @@ readonly fields: SeatFieldRefs;
  */
 export interface Prisma__SeatClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  theatre<T extends Prisma.TheatreDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TheatreDefaultArgs<ExtArgs>>): Prisma.Prisma__TheatreClient<runtime.Types.Result.GetResult<Prisma.$TheatrePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tickets<T extends Prisma.Seat$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seat$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -847,7 +1056,9 @@ export interface Prisma__SeatClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface SeatFieldRefs {
   readonly id: Prisma.FieldRef<"Seat", 'String'>
+  readonly rowLabel: Prisma.FieldRef<"Seat", 'String'>
   readonly seatNumber: Prisma.FieldRef<"Seat", 'Int'>
+  readonly theatreId: Prisma.FieldRef<"Seat", 'String'>
 }
     
 
@@ -1102,6 +1313,10 @@ export type SeatCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.SeatCreateManyInput | Prisma.SeatCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SeatIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1172,6 +1387,10 @@ export type SeatUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Seats to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SeatIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

@@ -47,7 +47,7 @@ const logoutUser = async (req: Request, res: Response, next: NextFunction) => {
 
 		req.session.destroy(() => {
 			res.clearCookie("connect.sid");
-			res.redirect("/");
+			sendResponse(res, {}, "Logged out successfully", 200);
 		});
 	});
 };

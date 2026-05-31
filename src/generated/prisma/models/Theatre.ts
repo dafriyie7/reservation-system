@@ -28,18 +28,24 @@ export type TheatreMinAggregateOutputType = {
   id: string | null
   name: string | null
   address: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TheatreMaxAggregateOutputType = {
   id: string | null
   name: string | null
   address: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type TheatreCountAggregateOutputType = {
   id: number
   name: number
   address: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -48,18 +54,24 @@ export type TheatreMinAggregateInputType = {
   id?: true
   name?: true
   address?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TheatreMaxAggregateInputType = {
   id?: true
   name?: true
   address?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type TheatreCountAggregateInputType = {
   id?: true
   name?: true
   address?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -139,6 +151,8 @@ export type TheatreGroupByOutputType = {
   id: string
   name: string
   address: string
+  createdAt: Date
+  updatedAt: Date
   _count: TheatreCountAggregateOutputType | null
   _min: TheatreMinAggregateOutputType | null
   _max: TheatreMaxAggregateOutputType | null
@@ -166,14 +180,20 @@ export type TheatreWhereInput = {
   id?: Prisma.StringFilter<"Theatre"> | string
   name?: Prisma.StringFilter<"Theatre"> | string
   address?: Prisma.StringFilter<"Theatre"> | string
-  movieSchedules?: Prisma.MovieScheduleListRelationFilter
+  createdAt?: Prisma.DateTimeFilter<"Theatre"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Theatre"> | Date | string
+  seats?: Prisma.SeatListRelationFilter
+  schedules?: Prisma.MovieScheduleListRelationFilter
 }
 
 export type TheatreOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  movieSchedules?: Prisma.MovieScheduleOrderByRelationAggregateInput
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  seats?: Prisma.SeatOrderByRelationAggregateInput
+  schedules?: Prisma.MovieScheduleOrderByRelationAggregateInput
 }
 
 export type TheatreWhereUniqueInput = Prisma.AtLeast<{
@@ -183,13 +203,18 @@ export type TheatreWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TheatreWhereInput | Prisma.TheatreWhereInput[]
   name?: Prisma.StringFilter<"Theatre"> | string
   address?: Prisma.StringFilter<"Theatre"> | string
-  movieSchedules?: Prisma.MovieScheduleListRelationFilter
+  createdAt?: Prisma.DateTimeFilter<"Theatre"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Theatre"> | Date | string
+  seats?: Prisma.SeatListRelationFilter
+  schedules?: Prisma.MovieScheduleListRelationFilter
 }, "id">
 
 export type TheatreOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.TheatreCountOrderByAggregateInput
   _max?: Prisma.TheatreMaxOrderByAggregateInput
   _min?: Prisma.TheatreMinOrderByAggregateInput
@@ -202,70 +227,96 @@ export type TheatreScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Theatre"> | string
   name?: Prisma.StringWithAggregatesFilter<"Theatre"> | string
   address?: Prisma.StringWithAggregatesFilter<"Theatre"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Theatre"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Theatre"> | Date | string
 }
 
 export type TheatreCreateInput = {
   id?: string
   name: string
   address: string
-  movieSchedules?: Prisma.MovieScheduleCreateNestedManyWithoutTheatreInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  seats?: Prisma.SeatCreateNestedManyWithoutTheatreInput
+  schedules?: Prisma.MovieScheduleCreateNestedManyWithoutTheatreInput
 }
 
 export type TheatreUncheckedCreateInput = {
   id?: string
   name: string
   address: string
-  movieSchedules?: Prisma.MovieScheduleUncheckedCreateNestedManyWithoutTheatreInput
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  seats?: Prisma.SeatUncheckedCreateNestedManyWithoutTheatreInput
+  schedules?: Prisma.MovieScheduleUncheckedCreateNestedManyWithoutTheatreInput
 }
 
 export type TheatreUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  movieSchedules?: Prisma.MovieScheduleUpdateManyWithoutTheatreNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seats?: Prisma.SeatUpdateManyWithoutTheatreNestedInput
+  schedules?: Prisma.MovieScheduleUpdateManyWithoutTheatreNestedInput
 }
 
 export type TheatreUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  movieSchedules?: Prisma.MovieScheduleUncheckedUpdateManyWithoutTheatreNestedInput
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seats?: Prisma.SeatUncheckedUpdateManyWithoutTheatreNestedInput
+  schedules?: Prisma.MovieScheduleUncheckedUpdateManyWithoutTheatreNestedInput
 }
 
 export type TheatreCreateManyInput = {
   id?: string
   name: string
   address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type TheatreUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TheatreUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TheatreCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TheatreMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TheatreMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type TheatreScalarRelationFilter = {
@@ -273,58 +324,136 @@ export type TheatreScalarRelationFilter = {
   isNot?: Prisma.TheatreWhereInput
 }
 
-export type TheatreCreateNestedOneWithoutMovieSchedulesInput = {
-  create?: Prisma.XOR<Prisma.TheatreCreateWithoutMovieSchedulesInput, Prisma.TheatreUncheckedCreateWithoutMovieSchedulesInput>
-  connectOrCreate?: Prisma.TheatreCreateOrConnectWithoutMovieSchedulesInput
+export type TheatreCreateNestedOneWithoutSeatsInput = {
+  create?: Prisma.XOR<Prisma.TheatreCreateWithoutSeatsInput, Prisma.TheatreUncheckedCreateWithoutSeatsInput>
+  connectOrCreate?: Prisma.TheatreCreateOrConnectWithoutSeatsInput
   connect?: Prisma.TheatreWhereUniqueInput
 }
 
-export type TheatreUpdateOneRequiredWithoutMovieSchedulesNestedInput = {
-  create?: Prisma.XOR<Prisma.TheatreCreateWithoutMovieSchedulesInput, Prisma.TheatreUncheckedCreateWithoutMovieSchedulesInput>
-  connectOrCreate?: Prisma.TheatreCreateOrConnectWithoutMovieSchedulesInput
-  upsert?: Prisma.TheatreUpsertWithoutMovieSchedulesInput
+export type TheatreUpdateOneRequiredWithoutSeatsNestedInput = {
+  create?: Prisma.XOR<Prisma.TheatreCreateWithoutSeatsInput, Prisma.TheatreUncheckedCreateWithoutSeatsInput>
+  connectOrCreate?: Prisma.TheatreCreateOrConnectWithoutSeatsInput
+  upsert?: Prisma.TheatreUpsertWithoutSeatsInput
   connect?: Prisma.TheatreWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TheatreUpdateToOneWithWhereWithoutMovieSchedulesInput, Prisma.TheatreUpdateWithoutMovieSchedulesInput>, Prisma.TheatreUncheckedUpdateWithoutMovieSchedulesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TheatreUpdateToOneWithWhereWithoutSeatsInput, Prisma.TheatreUpdateWithoutSeatsInput>, Prisma.TheatreUncheckedUpdateWithoutSeatsInput>
 }
 
-export type TheatreCreateWithoutMovieSchedulesInput = {
+export type TheatreCreateNestedOneWithoutSchedulesInput = {
+  create?: Prisma.XOR<Prisma.TheatreCreateWithoutSchedulesInput, Prisma.TheatreUncheckedCreateWithoutSchedulesInput>
+  connectOrCreate?: Prisma.TheatreCreateOrConnectWithoutSchedulesInput
+  connect?: Prisma.TheatreWhereUniqueInput
+}
+
+export type TheatreUpdateOneRequiredWithoutSchedulesNestedInput = {
+  create?: Prisma.XOR<Prisma.TheatreCreateWithoutSchedulesInput, Prisma.TheatreUncheckedCreateWithoutSchedulesInput>
+  connectOrCreate?: Prisma.TheatreCreateOrConnectWithoutSchedulesInput
+  upsert?: Prisma.TheatreUpsertWithoutSchedulesInput
+  connect?: Prisma.TheatreWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TheatreUpdateToOneWithWhereWithoutSchedulesInput, Prisma.TheatreUpdateWithoutSchedulesInput>, Prisma.TheatreUncheckedUpdateWithoutSchedulesInput>
+}
+
+export type TheatreCreateWithoutSeatsInput = {
   id?: string
   name: string
   address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  schedules?: Prisma.MovieScheduleCreateNestedManyWithoutTheatreInput
 }
 
-export type TheatreUncheckedCreateWithoutMovieSchedulesInput = {
+export type TheatreUncheckedCreateWithoutSeatsInput = {
   id?: string
   name: string
   address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  schedules?: Prisma.MovieScheduleUncheckedCreateNestedManyWithoutTheatreInput
 }
 
-export type TheatreCreateOrConnectWithoutMovieSchedulesInput = {
+export type TheatreCreateOrConnectWithoutSeatsInput = {
   where: Prisma.TheatreWhereUniqueInput
-  create: Prisma.XOR<Prisma.TheatreCreateWithoutMovieSchedulesInput, Prisma.TheatreUncheckedCreateWithoutMovieSchedulesInput>
+  create: Prisma.XOR<Prisma.TheatreCreateWithoutSeatsInput, Prisma.TheatreUncheckedCreateWithoutSeatsInput>
 }
 
-export type TheatreUpsertWithoutMovieSchedulesInput = {
-  update: Prisma.XOR<Prisma.TheatreUpdateWithoutMovieSchedulesInput, Prisma.TheatreUncheckedUpdateWithoutMovieSchedulesInput>
-  create: Prisma.XOR<Prisma.TheatreCreateWithoutMovieSchedulesInput, Prisma.TheatreUncheckedCreateWithoutMovieSchedulesInput>
+export type TheatreUpsertWithoutSeatsInput = {
+  update: Prisma.XOR<Prisma.TheatreUpdateWithoutSeatsInput, Prisma.TheatreUncheckedUpdateWithoutSeatsInput>
+  create: Prisma.XOR<Prisma.TheatreCreateWithoutSeatsInput, Prisma.TheatreUncheckedCreateWithoutSeatsInput>
   where?: Prisma.TheatreWhereInput
 }
 
-export type TheatreUpdateToOneWithWhereWithoutMovieSchedulesInput = {
+export type TheatreUpdateToOneWithWhereWithoutSeatsInput = {
   where?: Prisma.TheatreWhereInput
-  data: Prisma.XOR<Prisma.TheatreUpdateWithoutMovieSchedulesInput, Prisma.TheatreUncheckedUpdateWithoutMovieSchedulesInput>
+  data: Prisma.XOR<Prisma.TheatreUpdateWithoutSeatsInput, Prisma.TheatreUncheckedUpdateWithoutSeatsInput>
 }
 
-export type TheatreUpdateWithoutMovieSchedulesInput = {
+export type TheatreUpdateWithoutSeatsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  schedules?: Prisma.MovieScheduleUpdateManyWithoutTheatreNestedInput
 }
 
-export type TheatreUncheckedUpdateWithoutMovieSchedulesInput = {
+export type TheatreUncheckedUpdateWithoutSeatsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  schedules?: Prisma.MovieScheduleUncheckedUpdateManyWithoutTheatreNestedInput
+}
+
+export type TheatreCreateWithoutSchedulesInput = {
+  id?: string
+  name: string
+  address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  seats?: Prisma.SeatCreateNestedManyWithoutTheatreInput
+}
+
+export type TheatreUncheckedCreateWithoutSchedulesInput = {
+  id?: string
+  name: string
+  address: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  seats?: Prisma.SeatUncheckedCreateNestedManyWithoutTheatreInput
+}
+
+export type TheatreCreateOrConnectWithoutSchedulesInput = {
+  where: Prisma.TheatreWhereUniqueInput
+  create: Prisma.XOR<Prisma.TheatreCreateWithoutSchedulesInput, Prisma.TheatreUncheckedCreateWithoutSchedulesInput>
+}
+
+export type TheatreUpsertWithoutSchedulesInput = {
+  update: Prisma.XOR<Prisma.TheatreUpdateWithoutSchedulesInput, Prisma.TheatreUncheckedUpdateWithoutSchedulesInput>
+  create: Prisma.XOR<Prisma.TheatreCreateWithoutSchedulesInput, Prisma.TheatreUncheckedCreateWithoutSchedulesInput>
+  where?: Prisma.TheatreWhereInput
+}
+
+export type TheatreUpdateToOneWithWhereWithoutSchedulesInput = {
+  where?: Prisma.TheatreWhereInput
+  data: Prisma.XOR<Prisma.TheatreUpdateWithoutSchedulesInput, Prisma.TheatreUncheckedUpdateWithoutSchedulesInput>
+}
+
+export type TheatreUpdateWithoutSchedulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seats?: Prisma.SeatUpdateManyWithoutTheatreNestedInput
+}
+
+export type TheatreUncheckedUpdateWithoutSchedulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seats?: Prisma.SeatUncheckedUpdateManyWithoutTheatreNestedInput
 }
 
 
@@ -333,11 +462,13 @@ export type TheatreUncheckedUpdateWithoutMovieSchedulesInput = {
  */
 
 export type TheatreCountOutputType = {
-  movieSchedules: number
+  seats: number
+  schedules: number
 }
 
 export type TheatreCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  movieSchedules?: boolean | TheatreCountOutputTypeCountMovieSchedulesArgs
+  seats?: boolean | TheatreCountOutputTypeCountSeatsArgs
+  schedules?: boolean | TheatreCountOutputTypeCountSchedulesArgs
 }
 
 /**
@@ -353,7 +484,14 @@ export type TheatreCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * TheatreCountOutputType without action
  */
-export type TheatreCountOutputTypeCountMovieSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TheatreCountOutputTypeCountSeatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SeatWhereInput
+}
+
+/**
+ * TheatreCountOutputType without action
+ */
+export type TheatreCountOutputTypeCountSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MovieScheduleWhereInput
 }
 
@@ -362,7 +500,10 @@ export type TheatreSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   address?: boolean
-  movieSchedules?: boolean | Prisma.Theatre$movieSchedulesArgs<ExtArgs>
+  createdAt?: boolean
+  updatedAt?: boolean
+  seats?: boolean | Prisma.Theatre$seatsArgs<ExtArgs>
+  schedules?: boolean | Prisma.Theatre$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.TheatreCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["theatre"]>
 
@@ -370,23 +511,30 @@ export type TheatreSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   address?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["theatre"]>
 
 export type TheatreSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   address?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["theatre"]>
 
 export type TheatreSelectScalar = {
   id?: boolean
   name?: boolean
   address?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type TheatreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address", ExtArgs["result"]["theatre"]>
+export type TheatreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address" | "createdAt" | "updatedAt", ExtArgs["result"]["theatre"]>
 export type TheatreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  movieSchedules?: boolean | Prisma.Theatre$movieSchedulesArgs<ExtArgs>
+  seats?: boolean | Prisma.Theatre$seatsArgs<ExtArgs>
+  schedules?: boolean | Prisma.Theatre$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.TheatreCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TheatreIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -395,12 +543,15 @@ export type TheatreIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $TheatrePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Theatre"
   objects: {
-    movieSchedules: Prisma.$MovieSchedulePayload<ExtArgs>[]
+    seats: Prisma.$SeatPayload<ExtArgs>[]
+    schedules: Prisma.$MovieSchedulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     address: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["theatre"]>
   composites: {}
 }
@@ -795,7 +946,8 @@ readonly fields: TheatreFieldRefs;
  */
 export interface Prisma__TheatreClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  movieSchedules<T extends Prisma.Theatre$movieSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Theatre$movieSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovieSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  seats<T extends Prisma.Theatre$seatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Theatre$seatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  schedules<T extends Prisma.Theatre$schedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Theatre$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovieSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -828,6 +980,8 @@ export interface TheatreFieldRefs {
   readonly id: Prisma.FieldRef<"Theatre", 'String'>
   readonly name: Prisma.FieldRef<"Theatre", 'String'>
   readonly address: Prisma.FieldRef<"Theatre", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Theatre", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Theatre", 'DateTime'>
 }
     
 
@@ -1221,9 +1375,33 @@ export type TheatreDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Theatre.movieSchedules
+ * Theatre.seats
  */
-export type Theatre$movieSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Theatre$seatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Seat
+   */
+  select?: Prisma.SeatSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Seat
+   */
+  omit?: Prisma.SeatOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SeatInclude<ExtArgs> | null
+  where?: Prisma.SeatWhereInput
+  orderBy?: Prisma.SeatOrderByWithRelationInput | Prisma.SeatOrderByWithRelationInput[]
+  cursor?: Prisma.SeatWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SeatScalarFieldEnum | Prisma.SeatScalarFieldEnum[]
+}
+
+/**
+ * Theatre.schedules
+ */
+export type Theatre$schedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the MovieSchedule
    */

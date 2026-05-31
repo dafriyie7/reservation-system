@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { asyncHandler } from "../../utils/asyncHandler";
-import { logoutUser, signupUser } from "./auth.controller";
-import passport from "../../config/oauth";
-import { AppError } from "../../utils/AppError";
-import { sendResponse } from "../../utils/response";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { logoutUser, signupUser } from "./auth.controller.js";
+import passport from "../../config/oauth.js";
+import { AppError } from "../../utils/AppError.js";
+import { sendResponse } from "../../utils/response.js";
 
 const userRouter: Router = Router();
 

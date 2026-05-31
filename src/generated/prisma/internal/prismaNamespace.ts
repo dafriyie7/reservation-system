@@ -897,7 +897,9 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   username: 'username',
-  password: 'password'
+  password: 'password',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -906,7 +908,9 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const TheatreScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  address: 'address'
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type TheatreScalarFieldEnum = (typeof TheatreScalarFieldEnum)[keyof typeof TheatreScalarFieldEnum]
@@ -914,7 +918,9 @@ export type TheatreScalarFieldEnum = (typeof TheatreScalarFieldEnum)[keyof typeo
 
 export const SeatScalarFieldEnum = {
   id: 'id',
-  seatNumber: 'seatNumber'
+  rowLabel: 'rowLabel',
+  seatNumber: 'seatNumber',
+  theatreId: 'theatreId'
 } as const
 
 export type SeatScalarFieldEnum = (typeof SeatScalarFieldEnum)[keyof typeof SeatScalarFieldEnum]
@@ -922,9 +928,11 @@ export type SeatScalarFieldEnum = (typeof SeatScalarFieldEnum)[keyof typeof Seat
 
 export const MovieScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  title: 'title',
   description: 'description',
-  duration: 'duration'
+  duration: 'duration',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
@@ -933,7 +941,10 @@ export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof Mo
 export const MovieScheduleScalarFieldEnum = {
   id: 'id',
   movieId: 'movieId',
-  theatreId: 'theatreId'
+  theatreId: 'theatreId',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  createdAt: 'createdAt'
 } as const
 
 export type MovieScheduleScalarFieldEnum = (typeof MovieScheduleScalarFieldEnum)[keyof typeof MovieScheduleScalarFieldEnum]
@@ -941,9 +952,12 @@ export type MovieScheduleScalarFieldEnum = (typeof MovieScheduleScalarFieldEnum)
 
 export const TicketScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   seatId: 'seatId',
-  movieScheduleId: 'movieScheduleId',
-  userId: 'userId'
+  scheduleId: 'scheduleId',
+  status: 'status',
+  bookedAt: 'bookedAt',
+  paidAt: 'paidAt'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
@@ -994,6 +1008,20 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1004,6 +1032,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketStatus'
+ */
+export type EnumTicketStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketStatus[]'
+ */
+export type ListEnumTicketStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketStatus[]'>
     
 
 
