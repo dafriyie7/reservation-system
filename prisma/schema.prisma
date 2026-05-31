@@ -13,41 +13,50 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
-  name String
-  email String
+  id       String   @id @default(cuid())
+  name     String?
+  email    String   @unique
+  username String?   @unique
+  password String?
+  ticket   Ticket[]
 }
 
 model Theatre {
-  id String @id @default(cuid())
-  name String
-  address String
+  id             String          @id @default(cuid())
+  name           String
+  address        String
+  movieSchedules MovieSchedule[]
 }
 
 model Seat {
-  id String @id @default(cuid())
+  id         String   @id @default(cuid())
   seatNumber Int
+  tickets    Ticket[]
 }
 
 model Movie {
-  id String @id @default(cuid())
-  name String
-  description String
-  duration Int
+  id             String          @id @default(cuid())
+  name           String
+  description    String
+  duration       Int
+  movieSchedules MovieSchedule[]
 }
 
 model MovieSchedule {
-  id String @id @default(cuid())
-  movie Movie @relation(fields: [movieId], references: [id])
-  movieId String
-  theatre Theatre @relation(fields: [theatreId], references: [id])
+  id        String   @id @default(cuid())
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  movieId   String
+  theatre   Theatre  @relation(fields: [theatreId], references: [id])
   theatreId String
+  tickets   Ticket[]
 }
 
 model Ticket {
-  id String @id @default(cuid())
-  seat Seat @relation(fields: [seatId], references: [id])
-  seatId String
-  movieSchedule MovieSchedule @relation(fields: [movieScheduleId], references: [id])
+  id              String        @id @default(cuid())
+  seat            Seat          @relation(fields: [seatId], references: [id])
+  seatId          String
+  movieSchedule   MovieSchedule @relation(fields: [movieScheduleId], references: [id])
   movieScheduleId String
+  user            User?         @relation(fields: [userId], references: [id])
+  userId          String?
 }
