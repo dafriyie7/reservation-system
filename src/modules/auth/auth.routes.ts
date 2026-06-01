@@ -17,6 +17,8 @@ userRouter.post("/login", (req: Request, res:Response, next: NextFunction) => {
 		req.logIn(user, (err) => {
 			if (err) return next(new AppError(err.message, 500));
 
+			delete user.password;
+
 			return sendResponse(res, { user }, "success", 200);
 		});
 	})(req, res, next);

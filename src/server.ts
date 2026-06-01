@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import passport from "./config/oauth.js";
@@ -6,6 +6,7 @@ import sessionConfig from "./config/sessionConfig.js";
 import userRouter from "./modules/auth/auth.routes.js";
 import { AppError } from "./utils/AppError.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import theatreRouter from "./modules/theatre/theatre.routes.js";
 
 const app = express();
 
@@ -25,11 +26,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // log requests and responses
-app.use((req: Request, res: Response, next: Function) =>{
-	console.log(`request: ${req.method} ${req.url} ${req.method === "POST" ? JSON.stringify(req.body) : ""}`);
-	console.log(`response: ${res.statusCode}`)
-	next()
-})
+app.use((req: Request, res: Response, next: NextFunction) => {
+	const start = Date.now();
+
+	console.log(
+		`request: ${req.method} ${req.url} ${
+			req.method === "POST" ? JSON.stringify(req.body) : ""
+		}`,
+	);
+
+	res.on("finish", () => {
+		const duration = Date.now() - start;
+
+		console.log(
+			`response: ${req.method} ${req.url} ${res.statusCode} - ${duration}ms`,
+		);
+	});
+
+	next();
+});
 
 app.get("/", (req: Request, res: Response) => res.json({success: true, message: "Server health: OK!"}));
 
@@ -46,6 +61,7 @@ app.get("/home", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", userRouter)
+app.use("/api/theatre", theatreRouter)
 
 // not found
 app.use((req: Request, res: Response) => { 
