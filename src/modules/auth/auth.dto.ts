@@ -5,10 +5,9 @@ export enum Role {
 
 // export user type
 export type User = {
-	id: number;
-	name: string | undefined;
-	username: string | undefined;
+	name?: string;
+	username?: string;
 	email: string;
-	password: string | undefined;
+	password?: string;
 	role: Role
 };

@@ -7,6 +7,7 @@ import userRouter from "./modules/auth/auth.routes.js";
 import { AppError } from "./utils/AppError.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import theatreRouter from "./modules/theatre/theatre.routes.js";
+import movieRouter from "./modules/movie/movie.routes.js";
 
 const app = express();
 
@@ -62,6 +63,7 @@ app.get("/home", (req: Request, res: Response) => {
 
 app.use("/api/auth", userRouter)
 app.use("/api/theatre", theatreRouter)
+app.use("/api/movie", movieRouter)
 
 // not found
 app.use((req: Request, res: Response) => { 
