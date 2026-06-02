@@ -9,6 +9,7 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import theatreRouter from "./modules/theatre/theatre.routes.js";
 import movieRouter from "./modules/movie/movie.routes.js";
 import seatRouter from "./modules/seat/seat.routes.js";
+import ticketRouter from "./modules/ticket/ticket.routes.js";
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use("/api/auth", userRouter)
 app.use("/api/theatre", theatreRouter)
 app.use("/api/movie", movieRouter)
 app.use("/api/seat", seatRouter)
+app.use("/api/ticket", ticketRouter)
 
 // not found
 app.use((req: Request, res: Response) => { 
