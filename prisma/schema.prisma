@@ -51,7 +51,7 @@ model Seat {
   rowLabel   String
   seatNumber Int
 
-  theatre   Theatre @relation(fields: [theatreId], references: [id])
+  theatre   Theatre    @relation(fields: [theatreId], references: [id])
   theatreId String
 
   tickets Ticket[]
