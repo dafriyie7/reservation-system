@@ -55,7 +55,7 @@ const updateMovie = async (req: Request, res: Response) => {
 	// update movie
 	const movie = await prisma.movie.update({ where: { id: movieId }, data: movieData });
 
-	return sendResponse(res, { movie }, "Movie updated successfully", 200);
+	return sendResponse(res, { movie }, "success", 200);
 }
 
 export { addMovie, getAllMovies, getMovieById, updateMovie };

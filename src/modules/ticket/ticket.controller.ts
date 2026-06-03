@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../../utils/prisma.js";
 import { AppError } from "../../utils/AppError.js";
 import { sendResponse } from "../../utils/response.js";
+import { Ticket, TicketStatus } from "./ticket.dto.js";
 
 const generateTickets = async (req: Request, res: Response) => {
 	const theatreId = req.params.theatreId || req.body.theatreId;
@@ -89,6 +90,7 @@ const getTicketDetails = async (req: Request, res: Response) => {
 	const ticket = await prisma.ticket.findUnique({
 		where: { id: ticketId as string },
 		include: {
+			user: true,
 			seat: true,
 			schedule: { include: { theatre: true, movie: true } },
 		},
@@ -98,13 +100,27 @@ const getTicketDetails = async (req: Request, res: Response) => {
 };
 
 // update a ticket
-const updateTicket = async (req: Request, res: Response) => { 
+const updateTicket = async (req: Request, res: Response) => {
 	const ticketId = req.params.ticketId;
-	const { status } = req.body
-	
-	if (!ticketId) {
-		throw new AppError("Ticket ID are required", 400);
-	}
-}
+	const { status, userId } = req.body;
 
-export { generateTickets, getAllTickets, getTicketDetails, updateTicket};
+	if (!ticketId || !status) {
+		throw new AppError("Ticket ID and status are required", 400);
+	}
+
+	let data: Partial<Ticket> = { status, paidAt: new Date() };
+	if (userId) data.userId = userId;
+
+	const exists = await prisma.ticket.findUnique({ where: { id: ticketId as string } })
+	if (!exists) throw new AppError("Ticket not found", 404)
+
+	// update ticket
+	const ticket = await prisma.ticket.update({
+		where: { id: ticketId as string },
+		data: data
+	});
+
+	sendResponse(res, {ticket}, "success", 200)
+};
+
+export { generateTickets, getAllTickets, getTicketDetails, updateTicket };
