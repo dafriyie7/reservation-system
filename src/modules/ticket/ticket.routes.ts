@@ -8,6 +8,6 @@ const ticketRouter: Router = Router();
 ticketRouter.post("/generate", adminProtect, asyncHandler(generateTickets))
 ticketRouter.get("/all", asyncHandler(getAllTickets))
 ticketRouter.get("/:ticketId", asyncHandler(getTicketDetails)),
-ticketRouter.post("/update/:ticketId", adminProtect, asyncHandler(updateTicket))
+ticketRouter.patch("/update/:ticketId", adminProtect, asyncHandler(updateTicket))
 
 export default ticketRouter;

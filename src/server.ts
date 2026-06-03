@@ -10,6 +10,7 @@ import theatreRouter from "./modules/theatre/theatre.routes.js";
 import movieRouter from "./modules/movie/movie.routes.js";
 import seatRouter from "./modules/seat/seat.routes.js";
 import ticketRouter from "./modules/ticket/ticket.routes.js";
+import scheduleRouter from "./modules/movieSchedule/movieSchedule.routes.js";
 
 const app = express();
 
@@ -63,13 +64,15 @@ app.get("/home", (req: Request, res: Response) => {
 	});
 });
 
+// routes
 app.use("/api/auth", userRouter)
 app.use("/api/theatre", theatreRouter)
 app.use("/api/movie", movieRouter)
 app.use("/api/seat", seatRouter)
 app.use("/api/ticket", ticketRouter)
+app.use("/api/schedule", scheduleRouter)
 
-// not found
+// not found route
 app.use((req: Request, res: Response) => { 
 	throw new AppError("Route not found", 404);
 })

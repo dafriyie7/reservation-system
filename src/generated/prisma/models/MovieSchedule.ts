@@ -30,6 +30,7 @@ export type MovieScheduleMinAggregateOutputType = {
   theatreId: string | null
   startTime: Date | null
   endTime: Date | null
+  status: $Enums.ScheduleStatus | null
   createdAt: Date | null
 }
 
@@ -39,6 +40,7 @@ export type MovieScheduleMaxAggregateOutputType = {
   theatreId: string | null
   startTime: Date | null
   endTime: Date | null
+  status: $Enums.ScheduleStatus | null
   createdAt: Date | null
 }
 
@@ -48,6 +50,7 @@ export type MovieScheduleCountAggregateOutputType = {
   theatreId: number
   startTime: number
   endTime: number
+  status: number
   createdAt: number
   _all: number
 }
@@ -59,6 +62,7 @@ export type MovieScheduleMinAggregateInputType = {
   theatreId?: true
   startTime?: true
   endTime?: true
+  status?: true
   createdAt?: true
 }
 
@@ -68,6 +72,7 @@ export type MovieScheduleMaxAggregateInputType = {
   theatreId?: true
   startTime?: true
   endTime?: true
+  status?: true
   createdAt?: true
 }
 
@@ -77,6 +82,7 @@ export type MovieScheduleCountAggregateInputType = {
   theatreId?: true
   startTime?: true
   endTime?: true
+  status?: true
   createdAt?: true
   _all?: true
 }
@@ -159,6 +165,7 @@ export type MovieScheduleGroupByOutputType = {
   theatreId: string
   startTime: Date
   endTime: Date
+  status: $Enums.ScheduleStatus
   createdAt: Date
   _count: MovieScheduleCountAggregateOutputType | null
   _min: MovieScheduleMinAggregateOutputType | null
@@ -189,6 +196,7 @@ export type MovieScheduleWhereInput = {
   theatreId?: Prisma.StringFilter<"MovieSchedule"> | string
   startTime?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
   endTime?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
+  status?: Prisma.EnumScheduleStatusFilter<"MovieSchedule"> | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
   movie?: Prisma.XOR<Prisma.MovieScalarRelationFilter, Prisma.MovieWhereInput>
   theatre?: Prisma.XOR<Prisma.TheatreScalarRelationFilter, Prisma.TheatreWhereInput>
@@ -201,6 +209,7 @@ export type MovieScheduleOrderByWithRelationInput = {
   theatreId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   movie?: Prisma.MovieOrderByWithRelationInput
   theatre?: Prisma.TheatreOrderByWithRelationInput
@@ -216,6 +225,7 @@ export type MovieScheduleWhereUniqueInput = Prisma.AtLeast<{
   theatreId?: Prisma.StringFilter<"MovieSchedule"> | string
   startTime?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
   endTime?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
+  status?: Prisma.EnumScheduleStatusFilter<"MovieSchedule"> | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
   movie?: Prisma.XOR<Prisma.MovieScalarRelationFilter, Prisma.MovieWhereInput>
   theatre?: Prisma.XOR<Prisma.TheatreScalarRelationFilter, Prisma.TheatreWhereInput>
@@ -228,6 +238,7 @@ export type MovieScheduleOrderByWithAggregationInput = {
   theatreId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.MovieScheduleCountOrderByAggregateInput
   _max?: Prisma.MovieScheduleMaxOrderByAggregateInput
@@ -243,6 +254,7 @@ export type MovieScheduleScalarWhereWithAggregatesInput = {
   theatreId?: Prisma.StringWithAggregatesFilter<"MovieSchedule"> | string
   startTime?: Prisma.DateTimeWithAggregatesFilter<"MovieSchedule"> | Date | string
   endTime?: Prisma.DateTimeWithAggregatesFilter<"MovieSchedule"> | Date | string
+  status?: Prisma.EnumScheduleStatusWithAggregatesFilter<"MovieSchedule"> | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MovieSchedule"> | Date | string
 }
 
@@ -250,6 +262,7 @@ export type MovieScheduleCreateInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   movie: Prisma.MovieCreateNestedOneWithoutSchedulesInput
   theatre: Prisma.TheatreCreateNestedOneWithoutSchedulesInput
@@ -262,6 +275,7 @@ export type MovieScheduleUncheckedCreateInput = {
   theatreId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutScheduleInput
 }
@@ -270,6 +284,7 @@ export type MovieScheduleUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   movie?: Prisma.MovieUpdateOneRequiredWithoutSchedulesNestedInput
   theatre?: Prisma.TheatreUpdateOneRequiredWithoutSchedulesNestedInput
@@ -282,6 +297,7 @@ export type MovieScheduleUncheckedUpdateInput = {
   theatreId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutScheduleNestedInput
 }
@@ -292,6 +308,7 @@ export type MovieScheduleCreateManyInput = {
   theatreId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
 }
 
@@ -299,6 +316,7 @@ export type MovieScheduleUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -308,6 +326,7 @@ export type MovieScheduleUncheckedUpdateManyInput = {
   theatreId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -327,6 +346,7 @@ export type MovieScheduleCountOrderByAggregateInput = {
   theatreId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -336,6 +356,7 @@ export type MovieScheduleMaxOrderByAggregateInput = {
   theatreId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -345,6 +366,7 @@ export type MovieScheduleMinOrderByAggregateInput = {
   theatreId?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -437,6 +459,10 @@ export type MovieScheduleUncheckedUpdateManyWithoutMovieNestedInput = {
   deleteMany?: Prisma.MovieScheduleScalarWhereInput | Prisma.MovieScheduleScalarWhereInput[]
 }
 
+export type EnumScheduleStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ScheduleStatus
+}
+
 export type MovieScheduleCreateNestedOneWithoutTicketsInput = {
   create?: Prisma.XOR<Prisma.MovieScheduleCreateWithoutTicketsInput, Prisma.MovieScheduleUncheckedCreateWithoutTicketsInput>
   connectOrCreate?: Prisma.MovieScheduleCreateOrConnectWithoutTicketsInput
@@ -455,6 +481,7 @@ export type MovieScheduleCreateWithoutTheatreInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   movie: Prisma.MovieCreateNestedOneWithoutSchedulesInput
   tickets?: Prisma.TicketCreateNestedManyWithoutScheduleInput
@@ -465,6 +492,7 @@ export type MovieScheduleUncheckedCreateWithoutTheatreInput = {
   movieId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutScheduleInput
 }
@@ -504,6 +532,7 @@ export type MovieScheduleScalarWhereInput = {
   theatreId?: Prisma.StringFilter<"MovieSchedule"> | string
   startTime?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
   endTime?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
+  status?: Prisma.EnumScheduleStatusFilter<"MovieSchedule"> | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFilter<"MovieSchedule"> | Date | string
 }
 
@@ -511,6 +540,7 @@ export type MovieScheduleCreateWithoutMovieInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   theatre: Prisma.TheatreCreateNestedOneWithoutSchedulesInput
   tickets?: Prisma.TicketCreateNestedManyWithoutScheduleInput
@@ -521,6 +551,7 @@ export type MovieScheduleUncheckedCreateWithoutMovieInput = {
   theatreId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutScheduleInput
 }
@@ -555,6 +586,7 @@ export type MovieScheduleCreateWithoutTicketsInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
   movie: Prisma.MovieCreateNestedOneWithoutSchedulesInput
   theatre: Prisma.TheatreCreateNestedOneWithoutSchedulesInput
@@ -566,6 +598,7 @@ export type MovieScheduleUncheckedCreateWithoutTicketsInput = {
   theatreId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
 }
 
@@ -589,6 +622,7 @@ export type MovieScheduleUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   movie?: Prisma.MovieUpdateOneRequiredWithoutSchedulesNestedInput
   theatre?: Prisma.TheatreUpdateOneRequiredWithoutSchedulesNestedInput
@@ -600,6 +634,7 @@ export type MovieScheduleUncheckedUpdateWithoutTicketsInput = {
   theatreId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -608,6 +643,7 @@ export type MovieScheduleCreateManyTheatreInput = {
   movieId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
 }
 
@@ -615,6 +651,7 @@ export type MovieScheduleUpdateWithoutTheatreInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   movie?: Prisma.MovieUpdateOneRequiredWithoutSchedulesNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutScheduleNestedInput
@@ -625,6 +662,7 @@ export type MovieScheduleUncheckedUpdateWithoutTheatreInput = {
   movieId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutScheduleNestedInput
 }
@@ -634,6 +672,7 @@ export type MovieScheduleUncheckedUpdateManyWithoutTheatreInput = {
   movieId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -642,6 +681,7 @@ export type MovieScheduleCreateManyMovieInput = {
   theatreId: string
   startTime: Date | string
   endTime: Date | string
+  status?: $Enums.ScheduleStatus
   createdAt?: Date | string
 }
 
@@ -649,6 +689,7 @@ export type MovieScheduleUpdateWithoutMovieInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   theatre?: Prisma.TheatreUpdateOneRequiredWithoutSchedulesNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutScheduleNestedInput
@@ -659,6 +700,7 @@ export type MovieScheduleUncheckedUpdateWithoutMovieInput = {
   theatreId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutScheduleNestedInput
 }
@@ -668,6 +710,7 @@ export type MovieScheduleUncheckedUpdateManyWithoutMovieInput = {
   theatreId?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumScheduleStatusFieldUpdateOperationsInput | $Enums.ScheduleStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -708,6 +751,7 @@ export type MovieScheduleSelect<ExtArgs extends runtime.Types.Extensions.Interna
   theatreId?: boolean
   startTime?: boolean
   endTime?: boolean
+  status?: boolean
   createdAt?: boolean
   movie?: boolean | Prisma.MovieDefaultArgs<ExtArgs>
   theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
@@ -721,6 +765,7 @@ export type MovieScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   theatreId?: boolean
   startTime?: boolean
   endTime?: boolean
+  status?: boolean
   createdAt?: boolean
   movie?: boolean | Prisma.MovieDefaultArgs<ExtArgs>
   theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
@@ -732,6 +777,7 @@ export type MovieScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   theatreId?: boolean
   startTime?: boolean
   endTime?: boolean
+  status?: boolean
   createdAt?: boolean
   movie?: boolean | Prisma.MovieDefaultArgs<ExtArgs>
   theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
@@ -743,10 +789,11 @@ export type MovieScheduleSelectScalar = {
   theatreId?: boolean
   startTime?: boolean
   endTime?: boolean
+  status?: boolean
   createdAt?: boolean
 }
 
-export type MovieScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "movieId" | "theatreId" | "startTime" | "endTime" | "createdAt", ExtArgs["result"]["movieSchedule"]>
+export type MovieScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "movieId" | "theatreId" | "startTime" | "endTime" | "status" | "createdAt", ExtArgs["result"]["movieSchedule"]>
 export type MovieScheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   movie?: boolean | Prisma.MovieDefaultArgs<ExtArgs>
   theatre?: boolean | Prisma.TheatreDefaultArgs<ExtArgs>
@@ -775,6 +822,7 @@ export type $MovieSchedulePayload<ExtArgs extends runtime.Types.Extensions.Inter
     theatreId: string
     startTime: Date
     endTime: Date
+    status: $Enums.ScheduleStatus
     createdAt: Date
   }, ExtArgs["result"]["movieSchedule"]>
   composites: {}
@@ -1207,6 +1255,7 @@ export interface MovieScheduleFieldRefs {
   readonly theatreId: Prisma.FieldRef<"MovieSchedule", 'String'>
   readonly startTime: Prisma.FieldRef<"MovieSchedule", 'DateTime'>
   readonly endTime: Prisma.FieldRef<"MovieSchedule", 'DateTime'>
+  readonly status: Prisma.FieldRef<"MovieSchedule", 'ScheduleStatus'>
   readonly createdAt: Prisma.FieldRef<"MovieSchedule", 'DateTime'>
 }
     

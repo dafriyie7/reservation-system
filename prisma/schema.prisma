@@ -14,6 +14,12 @@ enum TicketStatus {
   USED
 }
 
+enum ScheduleStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+}
+
 enum Role {
   ADMIN
   USER
@@ -51,7 +57,7 @@ model Seat {
   rowLabel   String
   seatNumber Int
 
-  theatre   Theatre    @relation(fields: [theatreId], references: [id])
+  theatre   Theatre @relation(fields: [theatreId], references: [id])
   theatreId String
 
   tickets Ticket[]
@@ -82,6 +88,7 @@ model MovieSchedule {
 
   startTime DateTime
   endTime   DateTime
+  status    ScheduleStatus @default(SCHEDULED)
 
   tickets Ticket[]
 

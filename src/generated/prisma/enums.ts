@@ -19,6 +19,15 @@ export const TicketStatus = {
 export type TicketStatus = (typeof TicketStatus)[keyof typeof TicketStatus]
 
 
+export const ScheduleStatus = {
+  SCHEDULED: 'SCHEDULED',
+  LIVE: 'LIVE',
+  FINISHED: 'FINISHED'
+} as const
+
+export type ScheduleStatus = (typeof ScheduleStatus)[keyof typeof ScheduleStatus]
+
+
 export const Role = {
   ADMIN: 'ADMIN',
   USER: 'USER'

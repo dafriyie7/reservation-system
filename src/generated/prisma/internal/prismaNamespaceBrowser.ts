@@ -128,6 +128,7 @@ export const MovieScheduleScalarFieldEnum = {
   theatreId: 'theatreId',
   startTime: 'startTime',
   endTime: 'endTime',
+  status: 'status',
   createdAt: 'createdAt'
 } as const
 

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../../utils/prisma.js";
 import { AppError } from "../../utils/AppError.js";
 import { sendResponse } from "../../utils/response.js";
-import { Ticket, TicketStatus } from "./ticket.dto.js";
+import { Ticket } from "./ticket.dto.js";
 
 const generateTickets = async (req: Request, res: Response) => {
 	const theatreId = req.params.theatreId || req.body.theatreId;
